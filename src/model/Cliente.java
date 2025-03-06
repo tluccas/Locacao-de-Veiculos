@@ -1,15 +1,21 @@
 package model;
 
+import java.util.UUID;
 public class Cliente {
-
+    private String id;
     private String nome;
     private String cpf;
     private String email;
 
     public Cliente(String nome, String cpf, String email) {
+        this.id = UUID.randomUUID().toString();
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
+    }
+
+    public String getId() {
+        return "ID DO CLIENTE " + this.getNome() + ": " + id;
     }
     public String getNome() {
         return nome;

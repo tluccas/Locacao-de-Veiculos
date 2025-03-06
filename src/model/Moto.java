@@ -2,12 +2,12 @@ package model;
 
 public class Moto extends Veiculo{
 
-    public Moto(String placa, String modelo, int ano, boolean disponivel){
-        super(placa, modelo, ano, disponivel);
+    public Moto(String placa, String modelo, int ano){
+        super(placa, modelo, ano);
     }
 
     @Override
-    public double calcularPrecoLocacao(int dias){
+    public double calcularCustoLocacao(int dias){
         return dias * 50;
     }
 }
