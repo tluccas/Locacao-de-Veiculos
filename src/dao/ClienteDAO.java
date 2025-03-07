@@ -15,36 +15,21 @@ public class ClienteDAO {
 
     private static final String CLIENTES_FILE = "clientes.json";
     private List<Cliente> clientes;
-    private Gson gson; // Objeto Gson para serialização/desserialização
 
     public ClienteDAO() throws JsonCarregamentoException {
-        gson = new Gson();
-        clientes = carregarClientes();
+        Type tipoCliente = new TypeToken<ArrayList<Cliente>>(){}.getType();
+        clientes = Persistencia.carregarDados(CLIENTES_FILE, tipoCliente);
+
+        if (clientes == null){
+            clientes = new ArrayList<>();
+        }
     }
 
     //Método para salvar os clientes no clientes.json
     private void salvarClientes() {
-        try (Writer writer = new FileWriter(CLIENTES_FILE)){ //Cria um obj FileWriter para escrever no clientes.json
-            gson.toJson(clientes, writer); //Converte a lista para json e o obj FileWriter escreve no mesmo
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Persistencia.salvarDados(CLIENTES_FILE, clientes); // recebe o caminho do arquivo e o tipo de objeto
     }
 
-    //Método para carregar os clientes no clientes.json
-    private List<Cliente> carregarClientes() throws JsonCarregamentoException {
-
-        try(Reader reader = new FileReader(CLIENTES_FILE)){
-            //Criamos um objeto para indicar ao gson que estamos trabalhando com uma lista generica List<Veiculos>
-            Type listType = new TypeToken<ArrayList<Cliente>>(){}.getType();
-            return gson.fromJson(reader, listType); // Retorna o objeto leitor e a nossa lista de clientes
-        }catch (FileNotFoundException e){
-            return new ArrayList<>(); // Retorna a lista vazia se o arquivo não existir
-        } catch (IOException e) {
-            //Não irá retornar uma lista vazia pois o erro foi outro além do arquivo nao encontrado
-            throw new JsonCarregamentoException("Erro ao carregar clientes JSON: " + CLIENTES_FILE, e);
-        }
-    }
 
     // Adicionar clientes
     public void adicionarCliente(Cliente cliente) {
@@ -78,6 +63,7 @@ public class ClienteDAO {
                 return c;
             }
         }
+        System.out.println("CLIENTE NÃO ENCONTRADO");
         return null;
     }
 

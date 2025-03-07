@@ -3,7 +3,6 @@ package dao;
 import model.Locacao;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import model.exceptions.ClienteNaoEncontradoException;
 import model.exceptions.JsonCarregamentoException;
 import model.exceptions.LocacaoNaoEncontradaException;
 
@@ -16,37 +15,24 @@ public class LocacaoDAO {
 
     private static final String LOCACAO_FILE = "locacao.json";
     private List<Locacao> locacoes;
-    private Gson gson;
 
     public LocacaoDAO() throws JsonCarregamentoException {
-        locacoes = new ArrayList<>();
-        locacoes = carregarLocacoes();
+        Type tipoLocacao = new TypeToken<Locacao>() {}.getType();
+        locacoes = Persistencia.carregarDados(LOCACAO_FILE, tipoLocacao);
+
+        if (locacoes == null){
+            locacoes = new ArrayList<>(); //Cria uma lista vazia caso o arquivo nao seja encontrado
+        }
     }
 
     //Método para salvar as locacoes no json
     private void salvarLocacao() {
-        try (Writer writer = new FileWriter(LOCACAO_FILE)) {
-            gson.toJson(locacoes, writer);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Persistencia.salvarDados(LOCACAO_FILE, locacoes);
     }
 
-    //Método para carregar o locacao.json
-    private List<Locacao> carregarLocacoes() throws JsonCarregamentoException {
-        try (Reader reader = new FileReader(LOCACAO_FILE)) {
-            Type listType = new TypeToken<List<Locacao>>() {
-            }.getType();
-            return gson.fromJson(reader, listType);
-        } catch (FileNotFoundException e) {
-            return new ArrayList<>();
-        } catch (IOException e) {
-            throw new JsonCarregamentoException("ERRO ao carregar locacao.json: " + LOCACAO_FILE, e);
-        }
-    }
 
     // Método p/ buscar locação por id
-    public Locacao buscarLocacoes(String id) throws LocacaoNaoEncontradaException {
+    public Locacao buscarLocacoes(String id){
         for (Locacao l : locacoes) {
             if (l.getId().equals(id)) {
                 System.out.println("Locacao encontrada");
