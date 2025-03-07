@@ -1,12 +1,10 @@
 package dao;
 
 import model.Cliente;
-import model.Veiculo;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import model.exceptions.ClienteNaoEncontradoException;
 import model.exceptions.JsonCarregamentoException;
-import model.exceptions.VeiculoNaoEncontradoException;
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -39,7 +37,7 @@ public class ClienteDAO {
         try(Reader reader = new FileReader(CLIENTES_FILE)){
             //Criamos um objeto para indicar ao gson que estamos trabalhando com uma lista generica List<Veiculos>
             Type listType = new TypeToken<ArrayList<Cliente>>(){}.getType();
-            return gson.fromJson(reader, listType); // Retornamos o objeto leitor e a nossa lista de clientes
+            return gson.fromJson(reader, listType); // Retorna o objeto leitor e a nossa lista de clientes
         }catch (FileNotFoundException e){
             return new ArrayList<>(); // Retorna a lista vazia se o arquivo não existir
         } catch (IOException e) {
@@ -58,7 +56,7 @@ public class ClienteDAO {
     public void atualizarCliente(Cliente clienteAtualizado) throws ClienteNaoEncontradoException {
         Cliente clienteExistente = buscarClientePorCpf(clienteAtualizado.getCpf()); // Busca o cliente pelo CPF
         if (clienteExistente == null) {
-            throw new ClienteNaoEncontradoException("ERRO: Cliente " + clienteAtualizado.getCpf() + " não encontrado");
+            throw new ClienteNaoEncontradoException("ERRO: Cliente não encontrado");
         }
 
         // Atualiza os dados do cliente existente
@@ -85,11 +83,11 @@ public class ClienteDAO {
 
     //Remover clientes por cpf
     public void removerCliente(String cpf) throws ClienteNaoEncontradoException {
-        Cliente cliente = buscarClientePorCpf(cpf);
-        if (cliente == null){
+        Cliente clienteExistente = buscarClientePorCpf(cpf);
+        if (clienteExistente == null){
             throw new ClienteNaoEncontradoException("ERRO: Cliente " + cpf + " não encontrado");
         }
-        clientes.remove(cliente);
+        clientes.remove(clienteExistente);
         salvarClientes();
     }
 
