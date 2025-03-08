@@ -65,6 +65,11 @@ public class LocacaoDAO {
         salvarLocacao();
     }
 
+    //Método p/ listar locações
+    public List<Locacao> listarLocacoes(){
+        return locacoes;
+    }
+
     //Método p/ remover locação
     public void excluirLocacao(String id) throws LocacaoNaoEncontradaException {
         Locacao locacaoExistente = buscarLocacoes(id);
