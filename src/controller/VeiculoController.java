@@ -42,4 +42,11 @@ public class VeiculoController {
         }
         veiculoDAO.removerVeiculo(placa);
     }
+    // Método p/ atualizar veiculo
+    public void atualizarVeiculo(Veiculo veiculo) throws VeiculoNaoEncontradoException {
+        if (veiculo == null) {
+            throw new IllegalArgumentException("Veículo não pode ser nulo.");
+        }
+        veiculoDAO.atualizarVeiculo(veiculo);
+    }
 }

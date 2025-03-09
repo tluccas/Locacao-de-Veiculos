@@ -19,12 +19,11 @@ public class LocacaoController {
     }
 
     // Método p/ adicionar locação
-    public void adicionarLocacao(Cliente cliente, Veiculo veiculo, LocalDate dataRetirada, LocalDate dataDevolucao) {
-        if (cliente == null || veiculo == null || dataRetirada == null || dataDevolucao == null) {
-            throw new IllegalArgumentException("Erro: Todos os campos devem ser preenchidos.");
+    public void adicionarLocacao(Locacao locacao) {
+        if (locacao == null || locacao.getCliente() == null || locacao.getVeiculo() == null ||
+                locacao.getDataRetirada() == null || locacao.getDataDevolucao() == null) {
+            throw new IllegalArgumentException("Erro: Todos os campos da locação devem ser preenchidos.");
         }
-
-        Locacao locacao = new Locacao(cliente, veiculo, dataRetirada, dataDevolucao);
         locacaoDAO.adicionarLocacao(locacao);
     }
 
@@ -58,4 +57,12 @@ public class LocacaoController {
         locacaoDAO.excluirLocacao(id);
     }
 
+    //Método buscar locação por veiculo
+    public Locacao buscarLocacaoPorVeiculo(String placa) throws LocacaoNaoEncontradaException {
+        Locacao locacao = locacaoDAO.buscarLocacaoPorVeiculo(placa);
+        if (locacao == null) {
+            throw new LocacaoNaoEncontradaException("Locação não encontrada para o veículo com placa " + placa);
+        }
+        return locacao;
+    }
 }

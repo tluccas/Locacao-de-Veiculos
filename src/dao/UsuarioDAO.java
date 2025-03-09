@@ -11,13 +11,13 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class usuarioDAO {
+public class UsuarioDAO {
 
     private static final String USUARIOS_FILE = "usuarios.json";
     private List<Usuario> usuarios;
 
-    public usuarioDAO() throws JsonCarregamentoException {
-
+    public UsuarioDAO() throws JsonCarregamentoException {
+   
         Type tipoUsuario = new TypeToken<ArrayList<Usuario>>() {
         }.getType();
         usuarios = Persistencia.carregarDados(USUARIOS_FILE, tipoUsuario);
@@ -25,6 +25,10 @@ public class usuarioDAO {
         if (usuarios == null) {
             usuarios = new ArrayList<>();
         }
+        //Cria um administrador padrao
+    
+        Administrador admin1 = new Administrador("admin", "admin");
+    	usuarios.add(admin1);
     }
 
     // Método p salvar usuarios

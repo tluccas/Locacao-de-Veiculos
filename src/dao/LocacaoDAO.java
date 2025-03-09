@@ -78,5 +78,15 @@ public class LocacaoDAO {
         }
         locacoes.remove(locacaoExistente);
     }
+
+    //Buscar locaçao por veiculo
+    public Locacao buscarLocacaoPorVeiculo(String placa) {
+        for (Locacao locacao : locacoes) {
+            if (locacao.getVeiculo().getPlaca().equalsIgnoreCase(placa)) {
+                return locacao;
+            }
+        }
+        return null; // Retorna null se não encontrar uma locação para o veículo
+    }
 }
 

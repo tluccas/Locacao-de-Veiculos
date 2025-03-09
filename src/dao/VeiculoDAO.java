@@ -59,4 +59,18 @@ public class VeiculoDAO {
         veiculos.remove(veiculo);
         salvarVeiculos();
     }
+
+    public void atualizarVeiculo(Veiculo veiculoAtualizado) throws VeiculoNaoEncontradoException {
+        Veiculo veiculoExistente = buscarPorPlaca(veiculoAtualizado.getPlaca());
+        if (veiculoExistente == null) {
+            throw new VeiculoNaoEncontradoException("Veículo com placa " + veiculoAtualizado.getPlaca() + " não encontrado.");
+        }
+
+        // Atualiza os dados do veículo existente
+        veiculoExistente.setModelo(veiculoAtualizado.getModelo());
+        veiculoExistente.setAno(veiculoAtualizado.getAno());
+        veiculoExistente.setDisponivel(veiculoAtualizado.isDisponivel());
+
+        salvarVeiculos(); // Salva a lista atualizada no arquivo JSON
+    }
 }
