@@ -1,1 +1,8 @@
-[{"id":"01612722-ed14-44a9-88cb-9f6f3570008b","nome":"Junior","cpf":"123.443.412-12","email":"juniorsilva@gmail.com"}]
+[
+  {
+    "id": "01612722-ed14-44a9-88cb-9f6f3570008b",
+    "nome": "Junior",
+    "cpf": "123.443.412-12",
+    "email": "juniorsilva@gmail.com"
+  }
+]

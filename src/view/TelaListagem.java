@@ -17,9 +17,9 @@ public class TelaListagem {
     }
 
     public void exibirTela() {
-        System.out.println("\n--- LISTAGEM DE VEÍCULOS ---");
-        System.out.println("1. Veículos Disponíveis");
-        System.out.println("2. Veículos Locados");
+        System.out.println("\n--- LISTAGEM ---");
+        System.out.println("1. Listagem de Veículos Disponíveis");
+        System.out.println("2. Listagem de Veículos Locados");
         System.out.print("Escolha uma opção: ");
 
         int opcao = scanner.nextInt();

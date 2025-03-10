@@ -35,4 +35,5 @@ public class UsuarioController {
     public List<Usuario> atualizarListaUsuarios() throws JsonCarregamentoException {
         return UsuarioDAO.carregarUsuarios();
     }
+
 }

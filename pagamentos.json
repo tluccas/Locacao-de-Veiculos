@@ -1,0 +1,16 @@
+[
+  {
+    "id": "6b1dc851-9833-4c8e-ab4b-8dd4622bb716",
+    "Locacaoid": "abdb2567-cbc0-4c1d-81be-da33bbe1afd0",
+    "valorPago": 200.0,
+    "dataPagamento": "2025-03-14",
+    "metodoPagamento": "PIX"
+  },
+  {
+    "id": "e08b4b07-decf-425d-b67b-c10b3de4c000",
+    "Locacaoid": "5fce3a48-d90c-420a-8047-c7797c656432",
+    "valorPago": 1200.0,
+    "dataPagamento": "2025-03-15",
+    "metodoPagamento": "DINHEIRO"
+  }
+]

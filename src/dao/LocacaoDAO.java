@@ -19,7 +19,7 @@ public class LocacaoDAO {
     private List<Locacao> locacoes;
 
     public LocacaoDAO() throws JsonCarregamentoException {
-        Type tipoLocacao = new TypeToken<Locacao>() {}.getType();
+        Type tipoLocacao = new TypeToken<List<Locacao>>() {}.getType();
         locacoes = Persistencia.carregarDados(LOCACAO_FILE, tipoLocacao);
 
         if (locacoes == null){

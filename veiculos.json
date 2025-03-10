@@ -1,1 +1,18 @@
-[{"id":"01fc30cd-552d-4f40-bea3-2d813a231db0","placa":"AMS123","modelo":"Civic","ano":2006,"disponivel":true}]
+[
+  {
+    "id": "f9fdf984-623a-483b-be3a-250f8cac51aa",
+    "placa": "AMF 000",
+    "modelo": "Civic",
+    "ano": 1998,
+    "disponivel": true,
+    "tipo": "Carro"
+  },
+  {
+    "id": "a43d2b3e-01d0-4064-8846-dec432251995",
+    "placa": "MOT 123",
+    "modelo": "XRL 125",
+    "ano": 2005,
+    "disponivel": true,
+    "tipo": "Moto"
+  }
+]

@@ -7,13 +7,15 @@ public abstract class Veiculo {
     private String modelo;
     private int ano;
     private boolean disponivel;
+    private String tipo;
 
-    public Veiculo(String placa, String modelo, int ano) {
+    public Veiculo(String placa, String modelo, int ano, String tipo) {
         this.id = UUID.randomUUID().toString();
         this.placa = placa;
         this.modelo = modelo;
         this.ano = ano;
         this.disponivel = true;
+        this.tipo = tipo;
     }
 
     public String getId() {
@@ -44,6 +46,9 @@ public abstract class Veiculo {
     public void setDisponivel(boolean disponivel) {
         this.disponivel = disponivel;
     }
+    public abstract String getTipo(); //Para verificar o tipo de veiculo Carro, Caminhão ou Moto
 
     public abstract double calcularCustoLocacao(int preco);
+
+    public abstract String toString();
 }

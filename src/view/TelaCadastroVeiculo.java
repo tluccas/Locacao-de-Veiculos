@@ -39,13 +39,16 @@ public class TelaCadastroVeiculo {
         Veiculo veiculo = null;
         switch (tipo) {
             case 1:
-                veiculo = new Carro(placa, modelo, ano);
+                String tipoCarro = "Carro";
+                veiculo = new Carro(placa, modelo, ano, tipoCarro);
                 break;
             case 2:
-                veiculo = new Moto(placa, modelo, ano);
+                String tipoMoto = "Moto";
+                veiculo = new Moto(placa, modelo, ano, tipoMoto);
                 break;
             case 3:
-                veiculo = new Caminhao(placa, modelo, ano);
+                String tipoCaminhao = "Caminhão";
+                veiculo = new Caminhao(placa, modelo, ano, tipoCaminhao);
                 break;
             default:
                 System.out.println("Tipo de veículo inválido.");

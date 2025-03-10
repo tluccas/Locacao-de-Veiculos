@@ -102,13 +102,14 @@ public class TelaPrincipal {
 
 
 
-    private void exibirMenuGerente() {
+    private void exibirMenuGerente() throws JsonCarregamentoException {
         String controle;
         do {
             System.out.println("\n--- MENU GERENTE ---");
             System.out.println("1. Cadastrar Veículo");
-            System.out.println("2. Cadastrar Cliente");
-            System.out.println("3. Visualizar Relatórios");
+            System.out.println("2. Listar Veículos");
+            System.out.println("3. Cadastrar Cliente");
+            System.out.println("4. Visualizar Relatórios");
             System.out.println("0. Voltar para o Login");
             System.out.print("Escolha uma opção: ");
             controle = scanner.nextLine();
@@ -124,15 +125,27 @@ public class TelaPrincipal {
                     break;
                 case "2":
                     try {
+                        TelaListagem telaListagem = new TelaListagem();
+                        telaListagem.exibirTela();
+                    } catch (JsonCarregamentoException e) {
+                        System.out.println("Erro ao carregar dados: " + e.getMessage());
+                    }
+                    break;
+                case "3":
+                    try {
                         TelaCadastroCliente telaCadastroCliente = new TelaCadastroCliente();
                         telaCadastroCliente.exibirTela();
                     } catch (JsonCarregamentoException e) {
                         System.out.println("Erro ao carregar dados: " + e.getMessage());
                     }
                     break;
-                case "3":
-                    // Implementar visualização de relatórios
-                    System.out.println("Visualizar Relatórios (em desenvolvimento)");
+                case "4":
+                    try {
+                        TelaPagamentos telaPagamentos = new TelaPagamentos();
+                        telaPagamentos.exibirTela();
+                    } catch (JsonCarregamentoException e) {
+                        System.out.println("Erro ao carregar dados: " + e.getMessage());
+                    }
                     break;
                 case "0":
                     System.out.println("Voltando para o login...");

@@ -29,4 +29,9 @@ public class PagamentoController {
     public List<Pagamento> listarPagamentos() {
         return pagamentoDAO.listarPagamentos();
     }
+
+    //Método p/ listar faturamento mensal
+    public double faturamentoMensal(){
+        return pagamentoDAO.faturamentoMensal();
+    }
 }
