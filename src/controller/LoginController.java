@@ -16,6 +16,8 @@ public class LoginController {
     
     
     public Usuario fazerLogin(String login, String senha) throws UsuarioNaoEncontradoException, SenhaOuUserIncorretoException {
+
+
         if (login == null || login.trim().isEmpty()) {
             throw new IllegalArgumentException("O login não pode ser vazio.");
         }

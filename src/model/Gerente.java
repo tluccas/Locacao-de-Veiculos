@@ -2,8 +2,8 @@ package model;
 
 public class Gerente extends Usuario{
 
-    public Gerente(String usuario, String senha){
-        super(usuario, senha);
+    public Gerente(String usuario, String senha, String tipo){
+        super(usuario, senha, tipo);
     }
 
     @Override

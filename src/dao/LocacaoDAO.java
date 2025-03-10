@@ -3,11 +3,13 @@ package dao;
 import model.Locacao;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import model.Pagamento;
 import model.exceptions.JsonCarregamentoException;
 import model.exceptions.LocacaoNaoEncontradaException;
 
 import java.io.*;
 import java.lang.reflect.Type;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +28,7 @@ public class LocacaoDAO {
     }
 
     //Método para salvar as locacoes no json
-    private void salvarLocacao() {
+    public void salvarLocacao() {
         Persistencia.salvarDados(LOCACAO_FILE, locacoes);
     }
 
@@ -51,18 +53,21 @@ public class LocacaoDAO {
     }
 
     //Método p/ atualizar locação
-    public void atualizarLocacao(Locacao locacaoAtualizada) {
+    public void atualizarLocacao(Locacao locacaoAtualizada) throws LocacaoNaoEncontradaException {
         Locacao locacaoExistente = buscarLocacoes(locacaoAtualizada.getId());
         if (locacaoExistente == null) {
-            throw new LocacaoNaoEncontradaException("Locacao nao encontrada");
+            throw new LocacaoNaoEncontradaException("Locação não encontrada.");
         }
 
-        locacaoExistente.setDataDevolucao(locacaoAtualizada.getDataDevolucao()); //Atualiza a data de devolução
-        locacaoExistente.setStatus(locacaoAtualizada.getStatus()); // Atualiza o status
-        locacaoExistente.setValorTotal(locacaoAtualizada.getValorTotal()); // Atualiza o valor total
-        locacaoExistente.setPagamento(locacaoAtualizada.getPagamento()); // Atualiza o pagamento
+        // Atualiza os dados da locação existente
+        locacaoExistente.setCliente(locacaoAtualizada.getCliente());
+        locacaoExistente.setVeiculo(locacaoAtualizada.getVeiculo());
+        locacaoExistente.setDataRetirada(locacaoAtualizada.getDataRetirada());
+        locacaoExistente.setDataDevolucao(locacaoAtualizada.getDataDevolucao());
+        locacaoExistente.setValorTotal(locacaoAtualizada.getValorTotal());
+        locacaoExistente.setPagamento(locacaoAtualizada.getPagamento());
 
-        salvarLocacao();
+        salvarLocacao(); // Salva a lista atualizada no arquivo JSON
     }
 
     //Método p/ listar locações

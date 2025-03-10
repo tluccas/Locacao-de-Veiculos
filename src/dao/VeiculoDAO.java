@@ -25,7 +25,7 @@ public class VeiculoDAO {
     }
 
     //Método para salvar lista de veículos no arquivo veiculos.json
-    private void salvarVeiculos() {
+    public void salvarVeiculos() {
         Persistencia.salvarDados(VEICULOS_FILE, veiculos);
     }
 

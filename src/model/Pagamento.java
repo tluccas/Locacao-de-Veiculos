@@ -10,13 +10,14 @@ public class Pagamento {
     private LocalDate dataPagamento;
     private MetodoPagamento metodoPagamento;
 
-    public Pagamento( String Locacaoid, double valorPago, MetodoPagamento metodoPagamento) {
+    public Pagamento(String Locacaoid, double valorPago, LocalDate dataPagamento, MetodoPagamento metodoPagamento) {
         this.id = UUID.randomUUID().toString();
         this.Locacaoid = Locacaoid;
         this.valorPago = valorPago;
-        this.dataPagamento = LocalDate.now();
+        this.dataPagamento = dataPagamento;
         this.metodoPagamento = metodoPagamento;
     }
+
 
     //Getters e Setters
 

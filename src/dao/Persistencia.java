@@ -2,15 +2,22 @@ package dao;
 
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
+import model.Usuario;
+import util.UsuarioTypeAdapter;
 import model.exceptions.JsonCarregamentoException;
 
 import java.io.*;
 import java.lang.reflect.Type;
+import java.time.LocalDate;
 
 public class Persistencia {
 
-    private static final Gson gson = new Gson(); // Objeto Gson para serialização/desserialização
+    private static final Gson gson = new GsonBuilder()
+            .registerTypeAdapter(LocalDate.class, new LocalDateAdapter()) // Adiciona suporte para LocalDate
+            .registerTypeAdapter(Usuario.class, new UsuarioTypeAdapter()) // Mantém suporte para Usuario
+            .create(); // Objeto Gson para serialização/desserialização
 
     // Método para salvar dados em um arquivo JSON
     public static void salvarDados(String caminhoArquivo, Object dados) {

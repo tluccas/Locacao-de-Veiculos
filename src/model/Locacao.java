@@ -30,7 +30,7 @@ public class Locacao {
     }
 
     // Método para calcular o valor total da locação
-    private double calcularValorTotal(LocalDate diaAtual) {
+    public double calcularValorTotal(LocalDate diaAtual) {
         //Obtem o dia da data de devolucao e da data de retirada e subtrai para obter a qnt de dias
         int dias = (int) (dataDevolucao.toEpochDay() - dataRetirada.toEpochDay());
 
@@ -47,8 +47,8 @@ public class Locacao {
 
 
     // Método para registrar o pagamento
-    public void registrarPagamento(double valorPago, MetodoPagamento metodoPagamento) {
-        this.pagamento = new Pagamento(this.id, valorPago, metodoPagamento);
+    public void registrarPagamento(double valorPago, LocalDate dataDevolucao, MetodoPagamento metodoPagamento) {
+        this.pagamento = new Pagamento(this.id, valorPago, dataDevolucao, metodoPagamento);
     }
 
     //Método para definir status da locação

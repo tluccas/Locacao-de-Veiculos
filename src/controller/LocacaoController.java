@@ -28,18 +28,11 @@ public class LocacaoController {
     }
 
     //Método p/ atualizar uma locação
-    public void atualizarLocacao(String id, LocalDate dataDevolucao, String status, double valorTotal, Pagamento pagamento) {
-            Locacao locacaoExistente = locacaoDAO.buscarLocacoes(id);
-            if (locacaoExistente == null) {
-                throw new LocacaoNaoEncontradaException("Erro: locção não encontrada");
-            }
-
-            locacaoExistente.setDataDevolucao(dataDevolucao);
-            locacaoExistente.setStatus(status);
-            locacaoExistente.setValorTotal(valorTotal);
-            locacaoExistente.setPagamento(pagamento);
-            locacaoDAO.atualizarLocacao(locacaoExistente);
-
+    public void atualizarLocacao(Locacao locacao) throws LocacaoNaoEncontradaException {
+        if (locacao == null) {
+            throw new IllegalArgumentException("Locação não pode ser nula.");
+        }
+        locacaoDAO.atualizarLocacao(locacao);
     }
 
     // Método p/ listar locações

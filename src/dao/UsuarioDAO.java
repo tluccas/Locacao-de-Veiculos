@@ -24,30 +24,37 @@ public class UsuarioDAO {
 
         if (usuarios == null) {
             usuarios = new ArrayList<>();
+            Administrador admin1 = new Administrador("admin", "admin", "Administrador");
+            usuarios.add(admin1);
         }
         //Cria um administrador padrao
     
-        Administrador admin1 = new Administrador("admin", "admin");
-    	usuarios.add(admin1);
+
     }
 
+
+    //Método p carregar novamente usuarios
+    public static List<Usuario> carregarUsuarios() throws JsonCarregamentoException {
+        Type tipoUsuario = new TypeToken<ArrayList<Usuario>>() {}.getType();
+        return Persistencia.carregarDados(USUARIOS_FILE, tipoUsuario);
+    }
     // Método p salvar usuarios
-    private void salvarUsuarios() {
+    public void salvarUsuarios() {
         Persistencia.salvarDados(USUARIOS_FILE, usuarios);
     }
 
-    public void adicionarUsuario(String usuario, String senha, String tipo) {
+    public void adicionarUsuario(String usuario, String senha, String tipo) throws JsonCarregamentoException {
         Usuario user;
 
         switch (tipo) {
             case "Administrador":
-                user = new Administrador(usuario, senha);
+                user = new Administrador(usuario, senha, tipo);
                 break;
             case "Gerente":
-                user = new Gerente(usuario, senha);
+                user = new Gerente(usuario, senha, tipo);
                 break;
             case "Atendente":
-                user = new Atendente(usuario, senha);
+                user = new Atendente(usuario, senha, tipo);
                 break;
             default:
                 throw new IllegalStateException("Erro tipo inexistente: " + tipo);
@@ -55,6 +62,7 @@ public class UsuarioDAO {
 
         usuarios.add(user);
         salvarUsuarios();
+
     }
 
     public Usuario buscarUsuario(String usuario, String senha) throws UsuarioNaoEncontradoException, SenhaOuUserIncorretoException {

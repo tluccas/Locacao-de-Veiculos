@@ -6,11 +6,13 @@ import controller.VeiculoController;
 import model.Locacao;
 import model.Pagamento;
 import model.Veiculo;
+import model.MetodoPagamento;
 import model.exceptions.JsonCarregamentoException;
 import model.exceptions.LocacaoNaoEncontradaException;
 import model.exceptions.VeiculoNaoEncontradoException;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class TelaDevolucao {
@@ -55,34 +57,57 @@ public class TelaDevolucao {
             }
 
             // Solicitar data de devolução real
-            System.out.print("Data de Devolução Real (AAAA-MM-DD): ");
-            LocalDate dataDevolucaoReal = LocalDate.parse(scanner.nextLine());
+            LocalDate dataDevolucaoReal = null;
+            boolean dataValida = false;
+            while (!dataValida) {
+                System.out.print("Data de Devolução Real (AAAA-MM-DD): ");
+                String dataDevolucaoStr = scanner.nextLine();
+                try {
+                    dataDevolucaoReal = LocalDate.parse(dataDevolucaoStr);
+                    dataValida = true;
+                } catch (DateTimeParseException e) {
+                    System.out.println("Formato de data inválido. Use o formato AAAA-MM-DD.");
+                }
+            }
 
             // Calcular valor total da locação (incluindo multa por atraso, se houver)
             double valorTotal = locacao.calcularValorTotal(dataDevolucaoReal);
             System.out.println("Valor Total a Pagar: R$ " + valorTotal);
 
             // Solicitar método de pagamento
-            System.out.print("Método de Pagamento (Dinheiro, Cartão, etc.): ");
-            String metodoPagamento = scanner.nextLine();
+            System.out.print("Método de Pagamento (Dinheiro, Cartão, PIX, etc.): ");
+            String metodoPagamentoStr = scanner.nextLine();
+
+            // Validar e converter o método de pagamento
+            MetodoPagamento metodoPagamento;
+            try {
+                metodoPagamento = MetodoPagamento.valueOf(metodoPagamentoStr.toUpperCase());
+            } catch (IllegalArgumentException e) {
+                System.out.println("Método de pagamento inválido. Use Dinheiro, Cartão, PIX, etc.");
+                return;
+            }
 
             // Registrar o pagamento
             Pagamento pagamento = new Pagamento(locacao.getId(), valorTotal, dataDevolucaoReal, metodoPagamento);
             pagamentoController.adicionarPagamento(pagamento);
 
             // Atualizar status do veículo para disponível
-            veiculo.setDisponivel(true); // Usando o método setDisponivel
+            veiculo.setDisponivel(true);
             veiculoController.atualizarVeiculo(veiculo);
 
             // Atualizar status da locação
-            locacao.atualizarStatus(); // Atualiza o status da locação com base na data e no pagamento
+            locacao.setPagamento(pagamento);
+            locacao.atualizarStatus();
             locacaoController.atualizarLocacao(locacao);
 
             System.out.println("Devolução registrada com sucesso!");
         } catch (VeiculoNaoEncontradoException | LocacaoNaoEncontradaException e) {
             System.out.println(e.getMessage());
+        } catch (IllegalArgumentException e) {
+            System.out.println("Erro: " + e.getMessage());
         } catch (Exception e) {
             System.out.println("Erro inesperado: " + e.getMessage());
+            e.printStackTrace(); // Adicione esta linha para depuração
         }
     }
 }

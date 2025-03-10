@@ -26,7 +26,7 @@ public class ClienteDAO {
     }
 
     //Método para salvar os clientes no clientes.json
-    private void salvarClientes() {
+    public void salvarClientes() {
         Persistencia.salvarDados(CLIENTES_FILE, clientes); // recebe o caminho do arquivo e o tipo de objeto
     }
 
