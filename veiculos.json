@@ -14,5 +14,21 @@
     "ano": 2005,
     "disponivel": true,
     "tipo": "Moto"
+  },
+  {
+    "id": "1ce7b54a-edc9-4861-875b-7f1877273a17",
+    "placa": "AA111",
+    "modelo": "Titan",
+    "ano": 2020,
+    "disponivel": true,
+    "tipo": "Moto"
+  },
+  {
+    "id": "ed410ef6-ea5a-47f3-83f7-f8f0f3196b8f",
+    "placa": "AMD 000",
+    "modelo": "Mercedes",
+    "ano": 2025,
+    "disponivel": true,
+    "tipo": "Caminhão"
   }
 ]

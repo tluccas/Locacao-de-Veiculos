@@ -31,7 +31,7 @@ public class TelaCadastroVeiculo {
         System.out.println("Selecione o tipo de veículo:");
         System.out.println("1. Carro");
         System.out.println("2. Moto");
-        System.out.println("3. Caminhão");
+        System.out.println("3. Caminhao");
         System.out.print("Opção: ");
         int tipo = scanner.nextInt();
         scanner.nextLine(); // Limpar o buffer
@@ -47,8 +47,8 @@ public class TelaCadastroVeiculo {
                 veiculo = new Moto(placa, modelo, ano, tipoMoto);
                 break;
             case 3:
-                String tipoCaminhao = "Caminhão";
-                veiculo = new Caminhao(placa, modelo, ano, tipoCaminhao);
+            //    String tipoCaminhao = "Caminhao";
+                veiculo = new Caminhao(placa, modelo, ano, "Caminhao");
                 break;
             default:
                 System.out.println("Tipo de veículo inválido.");

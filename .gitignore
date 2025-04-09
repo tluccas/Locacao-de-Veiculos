@@ -10,3 +10,10 @@ TesteLocacao.java
 /dist/
 /nbdist/
 /.nb-gradle/
+
+/.idea
+/META-INF
+/target
+.classpath
+.project
+Locadora.iml
