@@ -26,7 +26,7 @@ public class VeiculoTypeAdapter implements JsonDeserializer<Veiculo>, JsonSerial
                 return context.deserialize(json, Carro.class);
             case "Moto":
                 return context.deserialize(json, Moto.class);
-            case "Caminhao":
+            case "Caminhão":
                 return context.deserialize(json, Caminhao.class);
             default:
                 throw new JsonParseException("Tipo de veículo desconhecido: " + tipo);

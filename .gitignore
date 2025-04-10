@@ -17,4 +17,4 @@ TesteLocacao.java
 .classpath
 .project
 Locadora.iml
-src/dao/SQL.txt
+src/main/java/dao/SQL.txt

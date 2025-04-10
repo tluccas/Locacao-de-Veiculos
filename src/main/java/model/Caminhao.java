@@ -13,7 +13,7 @@ public class Caminhao extends Veiculo{
 
     @Override
     public String getTipo(){
-        return "Caminhao";
+        return "Caminhão";
     }
 
     @Override

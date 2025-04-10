@@ -30,7 +30,7 @@ public class MenuPrincipalView extends JFrame {
             painel.add(btnUsuarios);
             btnUsuarios.addActionListener(e -> {
                 try {
-                    new TelaCadastroUsuario();
+                    new view.TelaCadastroUsuario();
                 } catch (JsonCarregamentoException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -38,9 +38,9 @@ public class MenuPrincipalView extends JFrame {
         }
 
         if (usuario.getTipo().equalsIgnoreCase("Administrador") || usuario.getTipo().equalsIgnoreCase("Gerente")) {
-            JButton btnClientes = new JButton("Clientes");
-            JButton btnVeiculos = new JButton("Veículos");
-            JButton btnRelatorios = new JButton("Relatórios");
+            JButton btnClientes = new JButton("Cadastro De Clientes");
+            JButton btnVeiculos = new JButton("Cadastro De Veículos");
+            JButton btnRelatorios = new JButton("Visualizar Relatórios");
 
             painel.add(btnClientes);
             painel.add(btnVeiculos);
@@ -48,7 +48,7 @@ public class MenuPrincipalView extends JFrame {
 
             btnClientes.addActionListener(e -> {
                 try {
-                    new TelaCadastroCliente();
+                    new view.TelaCadastroCliente();
                 } catch (JsonCarregamentoException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -56,7 +56,7 @@ public class MenuPrincipalView extends JFrame {
 
             btnVeiculos.addActionListener(e -> {
                 try {
-                    new TelaCadastroVeiculo();
+                    new view.TelaCadastroVeiculo();
                 } catch (JsonCarregamentoException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -64,7 +64,7 @@ public class MenuPrincipalView extends JFrame {
 
             btnRelatorios.addActionListener(e -> {
                 try {
-                    new TelaListagem();
+                    new view.TelaListagem();
                 } catch (JsonCarregamentoException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -72,11 +72,11 @@ public class MenuPrincipalView extends JFrame {
         }
 
         if (usuario.getTipo().equalsIgnoreCase("Atendente")) {
-            JButton btnClientes = new JButton("Clientes");
-            JButton btnVeiculos = new JButton("Veículos");
-            JButton btnLocacoes = new JButton("Locações");
-            JButton btnPagamentos = new JButton("Pagamentos");
-            JButton btnDevolucao = new JButton("Devoluções");
+            JButton btnClientes = new JButton("Cadastro De Clientes");
+            JButton btnVeiculos = new JButton("Listar Veículos");
+            JButton btnLocacoes = new JButton("Registrar Locação");
+            JButton btnPagamentos = new JButton("Pagamentos Gerais");
+            JButton btnDevolucao = new JButton("Registrar Devolução e Pagamento");
 
             painel.add(btnClientes);
             painel.add(btnVeiculos);
@@ -86,7 +86,7 @@ public class MenuPrincipalView extends JFrame {
 
             btnClientes.addActionListener(e -> {
                 try {
-                    new TelaCadastroCliente();
+                    new view.TelaCadastroCliente();
                 } catch (JsonCarregamentoException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -94,7 +94,7 @@ public class MenuPrincipalView extends JFrame {
 
             btnVeiculos.addActionListener(e -> {
                 try {
-                    new TelaCadastroVeiculo();
+                    new view.TelaCadastroVeiculo();
                 } catch (JsonCarregamentoException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -102,7 +102,7 @@ public class MenuPrincipalView extends JFrame {
 
             btnLocacoes.addActionListener(e -> {
                 try {
-                    new TelaLocacao();
+                    new view.TelaLocacao();
                 } catch (JsonCarregamentoException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -110,7 +110,7 @@ public class MenuPrincipalView extends JFrame {
 
             btnPagamentos.addActionListener(e -> {
                 try {
-                    new TelaPagamentos();
+                    new view.TelaPagamentos();
                 } catch (JsonCarregamentoException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -118,7 +118,7 @@ public class MenuPrincipalView extends JFrame {
 
             btnDevolucao.addActionListener(e -> {
                 try {
-                    new TelaDevolucao();
+                    new view.TelaDevolucao();
                 } catch (JsonCarregamentoException ex) {
                     throw new RuntimeException(ex);
                 }

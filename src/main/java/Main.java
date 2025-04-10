@@ -1,5 +1,3 @@
-package main;
-
 import view.TelaPrincipal;
 import model.exceptions.JsonCarregamentoException;
 
