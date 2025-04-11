@@ -43,5 +43,10 @@
     "usuario": "beltrano",
     "senha": "beltrano",
     "tipo": "Atendente"
+  },
+  {
+    "usuario": "Lucas",
+    "senha": "123",
+    "tipo": "Gerente"
   }
 ]

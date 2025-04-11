@@ -29,11 +29,7 @@ public class MenuPrincipalView extends JFrame {
             JButton btnUsuarios = new JButton("Usuários");
             painel.add(btnUsuarios);
             btnUsuarios.addActionListener(e -> {
-                try {
-                    new view.TelaCadastroUsuario();
-                } catch (JsonCarregamentoException ex) {
-                    throw new RuntimeException(ex);
-                }
+                new TelaCadastroUsuario();
             });
         }
 
