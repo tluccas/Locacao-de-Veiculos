@@ -26,10 +26,11 @@ public class MenuPrincipalView extends JFrame {
         painel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
         if (usuario.getTipo().equalsIgnoreCase("Administrador")) {
-            JButton btnUsuarios = new JButton("Usuários");
+            JButton btnUsuarios = new JButton("Cadastro de Usuários");
             painel.add(btnUsuarios);
             btnUsuarios.addActionListener(e -> {
-                new TelaCadastroUsuario();
+                setVisible(false);
+                new CadastroUsuarioView(this);
             });
         }
 
@@ -44,7 +45,8 @@ public class MenuPrincipalView extends JFrame {
 
             btnClientes.addActionListener(e -> {
                 try {
-                    new view.TelaCadastroCliente();
+                    setVisible(false);
+                    new CadastroClienteView(this);
                 } catch (JsonCarregamentoException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -82,7 +84,8 @@ public class MenuPrincipalView extends JFrame {
 
             btnClientes.addActionListener(e -> {
                 try {
-                    new view.TelaCadastroCliente();
+                    setVisible(false);
+                    new CadastroClienteView(this);
                 } catch (JsonCarregamentoException ex) {
                     throw new RuntimeException(ex);
                 }

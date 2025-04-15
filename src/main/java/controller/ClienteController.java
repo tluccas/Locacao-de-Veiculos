@@ -14,7 +14,7 @@ public class ClienteController {
     }
 
     // Método p/ adicionar um cliente
-    public void adicionarCliente(String nome, String cpf, String email){
+    public void adicionarCliente(String nome, String cpf, String email) throws JsonCarregamentoException{
         if(nome.isEmpty() || cpf.isEmpty() || email.isEmpty()){
             throw new IllegalArgumentException("Erro: algum campo está vazio");
         }

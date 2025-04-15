@@ -6,16 +6,18 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Scanner;
 
-public class TelaCadastroUsuario extends JFrame {
+public class CadastroUsuarioView extends JFrame {
+    private MenuPrincipalView menuAnterior;
     private UsuarioController controller;
     private JTextField txtUsuario;
     private JPasswordField txtSenha;
     private JTextField txtTipo;
     private JButton btnCriar;
+    private JButton btnVoltar;
 
-    public TelaCadastroUsuario() {
+    public CadastroUsuarioView(MenuPrincipalView menuAnterior) {
+        this.menuAnterior = menuAnterior;
         try {
             this.controller = new UsuarioController();  // Tratar a exceção aqui
         } catch (JsonCarregamentoException e) {
@@ -32,7 +34,7 @@ public class TelaCadastroUsuario extends JFrame {
     }
 
     public void inicializarComponentes() {
-        JPanel painel = new JPanel(new GridLayout(4, 4, 10, 10));
+        JPanel painel = new JPanel(new GridLayout(5, 2, 10, 10));
         painel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
         JLabel lblUsuario = new JLabel("Usuário:");
@@ -43,6 +45,7 @@ public class TelaCadastroUsuario extends JFrame {
         txtSenha = new JPasswordField();
         txtTipo = new JTextField();
         btnCriar = new JButton("CRIAR");
+        btnVoltar = new JButton("VOLTAR");
 
         painel.add(lblUsuario);
         painel.add(txtUsuario);
@@ -52,6 +55,7 @@ public class TelaCadastroUsuario extends JFrame {
         painel.add(txtTipo);
         painel.add(new JLabel());
         painel.add(btnCriar);
+        painel.add(btnVoltar);
 
         add(painel);
         adicionarEventos();
@@ -76,6 +80,14 @@ public class TelaCadastroUsuario extends JFrame {
                 } catch (JsonCarregamentoException ex) {
                     JOptionPane.showMessageDialog(null, "Erro ao cadastrar usuário: " + ex.getMessage());
                 }
+            }
+        });
+
+        btnVoltar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuAnterior.setVisible(true);
+                dispose();
             }
         });
     }
