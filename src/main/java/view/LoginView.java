@@ -9,13 +9,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class TelaPrincipal extends JFrame {
+public class LoginView extends JFrame {
 
     private JTextField txtUsuario;
     private JPasswordField txtSenha;
     private JButton btnEntrar;
 
-    public TelaPrincipal() throws JsonCarregamentoException {
+    public LoginView() throws JsonCarregamentoException {
         setTitle("Sistema de Locação de Veículos");
         setSize(400, 200);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -69,7 +69,7 @@ public class TelaPrincipal extends JFrame {
                 if (usuarioLogado != null) {
                     JOptionPane.showMessageDialog(null, "Login realizado com sucesso!");
                     dispose();
-                    new MenuPrincipalView(usuarioLogado); // Certifique-se que esta classe exista
+                    new MenuPrincipalView(usuarioLogado);
                 } else {
                     JOptionPane.showMessageDialog(null, "Usuário ou senha inválidos.");
                 }
