@@ -54,7 +54,7 @@ public class MenuPrincipalView extends JFrame {
 
             btnVeiculos.addActionListener(e -> {
                 try {
-                    new view.TelaCadastroVeiculo();
+                    new CadastroVeiculoView(this);
                 } catch (JsonCarregamentoException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -93,7 +93,8 @@ public class MenuPrincipalView extends JFrame {
 
             btnVeiculos.addActionListener(e -> {
                 try {
-                    new view.TelaCadastroVeiculo();
+                    setVisible(false);
+                    new CadastroVeiculoView(this);
                 } catch (JsonCarregamentoException ex) {
                     throw new RuntimeException(ex);
                 }

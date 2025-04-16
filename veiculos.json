@@ -30,5 +30,13 @@
     "ano": 2025,
     "disponivel": true,
     "tipo": "Caminhão"
+  },
+  {
+    "id": "c8c54977-6c09-43d6-813b-a73cfe013b52",
+    "placa": "VMT 657",
+    "modelo": "Ninja 4000",
+    "ano": 2012,
+    "disponivel": true,
+    "tipo": "Moto"
   }
 ]
