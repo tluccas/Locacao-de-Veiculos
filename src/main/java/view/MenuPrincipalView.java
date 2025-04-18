@@ -102,7 +102,7 @@ public class MenuPrincipalView extends JFrame {
 
             btnLocacoes.addActionListener(e -> {
                 try {
-                    new view.TelaLocacao();
+                    new LocacaoView(this);
                 } catch (JsonCarregamentoException ex) {
                     throw new RuntimeException(ex);
                 }

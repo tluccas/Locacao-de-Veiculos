@@ -49,4 +49,11 @@ public class VeiculoController {
         }
         veiculoDAO.atualizarVeiculo(veiculo);
     }
+
+    public void atualizarDisponibilidade(Veiculo veiculo, boolean disponivel) throws VeiculoNaoEncontradoException {
+        if (veiculo != null) {
+            veiculo.setDisponivel(disponivel);
+            veiculoDAO.atualizarVeiculo(veiculo);
+        }
+    }
 }
