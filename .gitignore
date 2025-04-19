@@ -19,8 +19,4 @@ TesteLocacao.java
 Locadora.iml
 SQL.txt
 src/main/java/dao/SQL.txt
-clientes.json
-locacao.json
-pagamentos.json
-usuarios.json
-veiculos.json
+*.json
