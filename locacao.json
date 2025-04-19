@@ -1,12 +1,12 @@
 [
   {
     "status": "Ativo",
-    "id": "abdb2567-cbc0-4c1d-81be-da33bbe1afd0",
+    "id": "4a4855ed-d922-4836-958d-546490a94ff6",
     "cliente": {
-      "id": "01612722-ed14-44a9-88cb-9f6f3570008b",
-      "nome": "Junior",
-      "cpf": "123.443.412-12",
-      "email": "juniorsilva@gmail.com"
+      "id": "25662e2d-452d-4de0-9e73-f09d0d980ff0",
+      "nome": "Fulano",
+      "cpf": "111.111.111-11",
+      "email": "fulano@"
     },
     "veiculo": {
       "id": "a43d2b3e-01d0-4064-8846-dec432251995",
@@ -16,63 +16,15 @@
       "disponivel": false,
       "tipo": "Moto"
     },
-    "dataRetirada": "2025-03-10",
-    "dataDevolucao": "2025-03-14",
-    "valorTotal": 200.0,
+    "dataRetirada": "2025-04-19",
+    "dataDevolucao": "2025-04-20",
+    "valorTotal": 50.0,
     "pagamento": {
-      "id": "6b1dc851-9833-4c8e-ab4b-8dd4622bb716",
-      "Locacaoid": "abdb2567-cbc0-4c1d-81be-da33bbe1afd0",
-      "valorPago": 200.0,
-      "dataPagamento": "2025-03-14",
-      "metodoPagamento": "PIX"
+      "id": "e2614a1b-ec05-4ba3-949f-821fef0de9b8",
+      "Locacaoid": "4a4855ed-d922-4836-958d-546490a94ff6",
+      "valorPago": 100.0,
+      "dataPagamento": "2025-04-21",
+      "metodoPagamento": "DINHEIRO"
     }
-  },
-  {
-    "status": "Ativo",
-    "id": "5fce3a48-d90c-420a-8047-c7797c656432",
-    "cliente": {
-      "id": "01612722-ed14-44a9-88cb-9f6f3570008b",
-      "nome": "Junior",
-      "cpf": "123.443.412-12",
-      "email": "juniorsilva@gmail.com"
-    },
-    "veiculo": {
-      "id": "f9fdf984-623a-483b-be3a-250f8cac51aa",
-      "placa": "AMF 000",
-      "modelo": "Civic",
-      "ano": 1998,
-      "disponivel": false,
-      "tipo": "Carro"
-    },
-    "dataRetirada": "2025-03-05",
-    "dataDevolucao": "2025-03-20",
-    "valorTotal": 1200.0,
-    "pagamento": {
-      "id": "31277754-1ee3-4365-a7bc-145dd2700dfa",
-      "Locacaoid": "5fce3a48-d90c-420a-8047-c7797c656432",
-      "valorPago": 1200.0,
-      "dataPagamento": "2025-03-20",
-      "metodoPagamento": "PIX"
-    }
-  },
-  {
-    "id": "f293b569-12e6-49a8-9828-bd808dc83636",
-    "cliente": {
-      "id": "25662e2d-452d-4de0-9e73-f09d0d980ff0",
-      "nome": "Fulano",
-      "cpf": "111.111.111-11",
-      "email": "fulano@"
-    },
-    "veiculo": {
-      "id": "f9fdf984-623a-483b-be3a-250f8cac51aa",
-      "placa": "AMF 000",
-      "modelo": "Civic",
-      "ano": 1998,
-      "disponivel": false,
-      "tipo": "Carro"
-    },
-    "dataRetirada": "2025-03-17",
-    "dataDevolucao": "2025-03-20",
-    "valorTotal": 240.0
   }
 ]

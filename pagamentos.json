@@ -19,5 +19,12 @@
     "valorPago": 1200.0,
     "dataPagamento": "2025-03-20",
     "metodoPagamento": "PIX"
+  },
+  {
+    "id": "e2614a1b-ec05-4ba3-949f-821fef0de9b8",
+    "Locacaoid": "4a4855ed-d922-4836-958d-546490a94ff6",
+    "valorPago": 100.0,
+    "dataPagamento": "2025-04-21",
+    "metodoPagamento": "DINHEIRO"
   }
 ]

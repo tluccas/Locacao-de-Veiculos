@@ -26,6 +26,7 @@ public class Locacao {
         this.dataDevolucao = dataDevolucao;
         this.valorTotal = calcularValorTotal(LocalDate.now());
         this.pagamento = null;
+        this.status = "Ativo";
         veiculo.setDisponivel(false);
     }
 

@@ -62,7 +62,7 @@ public class MenuPrincipalView extends JFrame {
 
             btnRelatorios.addActionListener(e -> {
                 try {
-                    new view.TelaListagem();
+                    new view.TelaPagamentos();
                 } catch (JsonCarregamentoException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -94,7 +94,7 @@ public class MenuPrincipalView extends JFrame {
             btnVeiculos.addActionListener(e -> {
                 try {
                     setVisible(false);
-                    new CadastroVeiculoView(this);
+                    new ListagemView(this);
                 } catch (JsonCarregamentoException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -118,7 +118,7 @@ public class MenuPrincipalView extends JFrame {
 
             btnDevolucao.addActionListener(e -> {
                 try {
-                    new view.TelaDevolucao();
+                    new PagamentoView(this);
                 } catch (JsonCarregamentoException ex) {
                     throw new RuntimeException(ex);
                 }

@@ -70,6 +70,7 @@ public class LocacaoView extends JFrame {
         painel.add(txtCpf);
         painel.add(lblPlaca);
         painel.add(txtPlaca);
+        painel.add(lblRetirada);
         painel.add(retiradaDateChooser);
         painel.add(lblDevolucao);
         painel.add(devolucaoDateChooser);
