@@ -61,11 +61,8 @@ public class MenuPrincipalView extends JFrame {
             });
 
             btnRelatorios.addActionListener(e -> {
-                try {
-                    new view.TelaPagamentos();
-                } catch (JsonCarregamentoException ex) {
-                    throw new RuntimeException(ex);
-                }
+                setVisible(false);
+                new RelatorioView(this);
             });
         }
 
@@ -109,11 +106,8 @@ public class MenuPrincipalView extends JFrame {
             });
 
             btnPagamentos.addActionListener(e -> {
-                try {
-                    new view.TelaPagamentos();
-                } catch (JsonCarregamentoException ex) {
-                    throw new RuntimeException(ex);
-                }
+                setVisible(false);
+                new RelatorioView(this);
             });
 
             btnDevolucao.addActionListener(e -> {

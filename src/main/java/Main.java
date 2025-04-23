@@ -1,8 +1,11 @@
 import view.LoginView;
 import model.exceptions.JsonCarregamentoException;
-
+import dao.*;
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws JsonCarregamentoException {
+        PagamentoDAO dao = new PagamentoDAO();
+
+        dao.listarPagamentos();
         try {
             // Inicializa a Tela Principal
             new LoginView();
