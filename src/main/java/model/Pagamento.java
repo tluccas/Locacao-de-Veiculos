@@ -1,39 +1,41 @@
 package model;
 
-import java.util.UUID;
 import java.time.LocalDate;
 public class Pagamento {
-
-    private String id;
-    private String Locacaoid;
+    private static int ultimoId = 0;
+    private int id;
+    private int Locacaoid;
     private double valorPago;
     private LocalDate dataPagamento;
     private MetodoPagamento metodoPagamento;
 
-    public Pagamento(String Locacaoid, double valorPago, LocalDate dataPagamento, MetodoPagamento metodoPagamento) {
-        this.id = UUID.randomUUID().toString();
+    public Pagamento(int Locacaoid, double valorPago, LocalDate dataPagamento, MetodoPagamento metodoPagamento) {
+        this.id = getId();
         this.Locacaoid = Locacaoid;
         this.valorPago = valorPago;
         this.dataPagamento = dataPagamento;
         this.metodoPagamento = metodoPagamento;
     }
 
-
+    public int ultimoId() {
+        ultimoId++;
+        return ultimoId;
+    }
     //Getters e Setters
 
     public MetodoPagamento getMetodoPagamento() {
         return metodoPagamento;
     }
-    public String getId() {
+    public int getId() {
         return id;
     }
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
-    public String getLocacaoid() {
+    public int getLocacaoid() {
         return Locacaoid;
     }
-    public void setLocacaoid(String locacaoid) {
+    public void setLocacaoid(int locacaoid) {
         Locacaoid = locacaoid;
     }
     public double getValorPago() {

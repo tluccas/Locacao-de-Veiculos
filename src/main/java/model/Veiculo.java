@@ -2,7 +2,8 @@ package model;
 
 import java.util.UUID;
 public abstract class Veiculo {
-    private String id;
+    private static int ultimoId = 0;
+    private int id;
     private String placa;
     private String modelo;
     private int ano;
@@ -10,7 +11,7 @@ public abstract class Veiculo {
     private String tipo;
 
     public Veiculo(String placa, String modelo, int ano, String tipo) {
-        this.id = UUID.randomUUID().toString();
+        this.id = gerarId();
         this.placa = placa;
         this.modelo = modelo;
         this.ano = ano;
@@ -18,8 +19,12 @@ public abstract class Veiculo {
         this.tipo = tipo;
     }
 
-    public String getId() {
-        return "ID DO VEICULO: " + id;
+    public int gerarId(){
+        ultimoId++;
+        return ultimoId;
+    }
+    public int getId() {
+        return id;
     }
     public String getPlaca() {
         return placa;

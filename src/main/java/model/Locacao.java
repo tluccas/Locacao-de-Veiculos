@@ -3,9 +3,9 @@ package model;
 import java.util.UUID;
 import java.time.LocalDate;
 public class Locacao {
-
+    private static int ultimoId = 0;
     private String status;
-    private String id;
+    private int id;
     private Cliente cliente;
     private Veiculo veiculo;
     private LocalDate dataRetirada;
@@ -19,7 +19,7 @@ public class Locacao {
             throw new IllegalArgumentException("A data de devolução não pode ser antes da data de retirada.");
         }
 
-        this.id = UUID.randomUUID().toString();
+        this.id = gerarId();
         this.cliente = cliente;
         this.veiculo = veiculo;
         this.dataRetirada = dataRetirada;
@@ -30,6 +30,11 @@ public class Locacao {
         veiculo.setDisponivel(false);
     }
 
+    // Construção de id manual
+    public int gerarId(){
+        ultimoId++;  // Incrementa o ID
+        return ultimoId;  // Retorna o novo ID
+    }
     // Método para calcular o valor total da locação
     public double calcularValorTotal(LocalDate diaAtual) {
         //Obtem o dia da data de devolucao e da data de retirada e subtrai para obter a qnt de dias
@@ -80,7 +85,7 @@ public class Locacao {
         this.pagamento = pagamento;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
     public Cliente getCliente() {

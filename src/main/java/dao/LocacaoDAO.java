@@ -34,9 +34,9 @@ public class LocacaoDAO {
 
 
     // Método p/ buscar locação por id
-    public Locacao buscarLocacoes(String id){
+    public Locacao buscarLocacoes(int id){
         for (Locacao l : locacoes) {
-            if (l.getId().equals(id)) {
+            if (l.getId() == id) {
                 System.out.println("Locacao encontrada");
                 return l;
             }
@@ -76,7 +76,7 @@ public class LocacaoDAO {
     }
 
     //Método p/ remover locação
-    public void excluirLocacao(String id) throws LocacaoNaoEncontradaException {
+    public void excluirLocacao(int id) throws LocacaoNaoEncontradaException {
         Locacao locacaoExistente = buscarLocacoes(id);
         if (locacaoExistente == null) {
             throw new LocacaoNaoEncontradaException("Locacao nao encontrada");

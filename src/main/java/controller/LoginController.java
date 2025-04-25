@@ -7,10 +7,12 @@ import model.exceptions.JsonCarregamentoException;
 import model.exceptions.SenhaOuUserIncorretoException;
 import model.exceptions.UsuarioNaoEncontradoException;
 
+import java.sql.SQLException;
+
 public class LoginController {
     private UsuarioDAO usuarioDAO;
 
-    public LoginController() throws JsonCarregamentoException {
+    public LoginController() throws SQLException {
         this.usuarioDAO = new UsuarioDAO();
     }
     

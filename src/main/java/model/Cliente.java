@@ -1,21 +1,31 @@
 package model;
 
-import java.util.UUID;
+
 public class Cliente {
-    private String id;
+    private int id;
     private String nome;
     private String cpf;
     private String email;
 
+    // Construtor sem id (a partir de agora o id será gerado automaticamente pelo MySQL)
     public Cliente(String nome, String cpf, String email) {
-        this.id = UUID.randomUUID().toString();
+        this.nome = nome;
+        this.cpf = cpf;
+        this.email = email;
+    }
+    // Construtor com id (para quando for ler do banco de dados)
+    public Cliente(int id, String nome, String cpf, String email) {
+        this.id = id;
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
     }
 
-    public String getId() {
-        return "ID DO CLIENTE " + this.getNome() + ": " + id;
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
     }
     public String getNome() {
         return nome;

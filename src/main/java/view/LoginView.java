@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class LoginView extends JFrame {
 
@@ -16,12 +17,17 @@ public class LoginView extends JFrame {
     private JButton btnEntrar;
 
     public LoginView() throws JsonCarregamentoException {
-        setTitle("Sistema de Locação de Veículos");
-        setSize(400, 200);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-        inicializarComponentes();
-        setVisible(true);
+        try {
+            setTitle("Sistema de Locação de Veículos");
+            setSize(400, 200);
+            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            setLocationRelativeTo(null);
+            inicializarComponentes();
+            setVisible(true);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro ao inicializar: " + e.getMessage());
+            e.printStackTrace();  // Exibe mais detalhes no console
+        }
     }
 
     private void inicializarComponentes() {
@@ -61,7 +67,7 @@ public class LoginView extends JFrame {
                 UsuarioController controller = null;
                 try {
                     controller = new UsuarioController();
-                } catch (JsonCarregamentoException ex) {
+                } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }
                 Usuario usuarioLogado = controller.fazerLogin(usuario, senha);

@@ -21,7 +21,7 @@ public class PagamentoController {
     }
 
     //Método p/ excluir um pagamento
-    public void excluirPagamento(String id) throws PagamentoNaoEncontradoException {
+    public void excluirPagamento(int id) throws PagamentoNaoEncontradoException {
         pagamentoDAO.excluirPagamento(id);
     }
 

@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import model.exceptions.ClienteNaoEncontradoException;
 import model.exceptions.JsonCarregamentoException;
+import java.sql.*;
 
 import java.io.*;
 import java.lang.reflect.Type;

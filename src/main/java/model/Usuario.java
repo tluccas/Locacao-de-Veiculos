@@ -25,9 +25,7 @@ public abstract class Usuario {
         this.senha = senha;
     }
 
-    public abstract String getTipo(
-
-    );
+    public abstract String getTipo();
 
     @Override
     public String toString() {

@@ -92,8 +92,8 @@ public class RelatorioPagamentoPDF {
             LocalDate pagData = p.getDataPagamento();
 
             if(pagData.getMonthValue() == mesHoje && pagData.getYear() == anoHoje) {
-                adicionarCelula(tabela, p.getId(), fontDados);
-                adicionarCelula(tabela, p.getLocacaoid(), fontDados);
+                adicionarCelula(tabela, String.valueOf(p.getId()), fontDados);
+                adicionarCelula(tabela, String.valueOf(p.getLocacaoid()), fontDados);
                 adicionarCelula(tabela, String.format("%,.2f", p.getValorPago()), fontDados);
                 adicionarCelula(tabela, p.getDataPagamento().format(formatter), fontDados);
                 adicionarCelula(tabela, p.getMetodoPagamento().toString(), fontDados);

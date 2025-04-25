@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class CadastroUsuarioView extends JFrame {
     private MenuPrincipalView menuAnterior;
@@ -19,8 +20,8 @@ public class CadastroUsuarioView extends JFrame {
     public CadastroUsuarioView(MenuPrincipalView menuAnterior) {
         this.menuAnterior = menuAnterior;
         try {
-            this.controller = new UsuarioController();  // Tratar a exceção aqui
-        } catch (JsonCarregamentoException e) {
+            this.controller = new UsuarioController();
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro ao carregar dados: " + e.getMessage());
             return;  // Impede a criação da tela caso haja erro
         }
@@ -77,7 +78,7 @@ public class CadastroUsuarioView extends JFrame {
                 try {
                     controller.adicionarUsuario(usuario, senha, tipo);
                     JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
-                } catch (JsonCarregamentoException ex) {
+                } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(null, "Erro ao cadastrar usuário: " + ex.getMessage());
                 }
             }

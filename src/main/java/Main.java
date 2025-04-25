@@ -1,15 +1,12 @@
 import view.LoginView;
 import model.exceptions.JsonCarregamentoException;
-import dao.*;
-public class Main {
-    public static void main(String[] args) throws JsonCarregamentoException {
-        PagamentoDAO dao = new PagamentoDAO();
 
-        dao.listarPagamentos();
+public class Main {
+    public static void main(String[] args) {
         try {
             // Inicializa a Tela Principal
             new LoginView();
-             // Exibe o menu principal
+            // Exibe o menu principal
         } catch (JsonCarregamentoException e) {
             System.err.println("Erro ao carregar dados: " + e.getMessage());
         } catch (Exception e) {

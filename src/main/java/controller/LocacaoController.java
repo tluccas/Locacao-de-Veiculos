@@ -41,12 +41,12 @@ public class LocacaoController {
     }
 
     // Método p/ buscar locação por id
-    public Locacao buscarLocacao(String id) {
+    public Locacao buscarLocacao(int id) {
         return locacaoDAO.buscarLocacoes(id);
     }
 
     // Método p/ remover uma locação pelo id
-    public void removerLocacao(String id) {
+    public void removerLocacao(int id) {
         locacaoDAO.excluirLocacao(id);
     }
 

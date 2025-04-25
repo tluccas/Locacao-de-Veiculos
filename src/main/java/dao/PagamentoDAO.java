@@ -40,9 +40,9 @@ public class PagamentoDAO {
     }
 
     //Método para buscar pagamento por id
-    public Pagamento buscarPagamento(String id) throws PagamentoNaoEncontradoException {
+    public Pagamento buscarPagamento(int id) throws PagamentoNaoEncontradoException {
         for (Pagamento p : pagamentos) {
-            if(p.getId().equals(id)) {
+            if(p.getId() == id) {
                 System.out.println("Pagamento encontrado");
                 return p;
             }
@@ -52,7 +52,7 @@ public class PagamentoDAO {
     }
 
     //Método para remover pagamento da lista
-    public void excluirPagamento(String id) throws PagamentoNaoEncontradoException {
+    public void excluirPagamento(int id) throws PagamentoNaoEncontradoException {
         Pagamento pagamentoEncontrado = buscarPagamento(id);
         if (pagamentoEncontrado == null){
             throw new PagamentoNaoEncontradoException("Pagamento nao encontrado");
