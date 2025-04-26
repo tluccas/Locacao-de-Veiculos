@@ -6,6 +6,10 @@ public class Moto extends Veiculo{
         super(placa, modelo, ano, tipo);
     }
 
+    public Moto(int id, String placa, String modelo, int ano, boolean veiculoDisponivel, String tipo) {
+        super(id, placa, modelo, ano, veiculoDisponivel, tipo);
+    }
+
     @Override
     public double calcularCustoLocacao(int dias){
         return dias * 50;

@@ -11,7 +11,6 @@ public abstract class Veiculo {
     private String tipo;
 
     public Veiculo(String placa, String modelo, int ano, String tipo) {
-        this.id = gerarId();
         this.placa = placa;
         this.modelo = modelo;
         this.ano = ano;
@@ -19,10 +18,16 @@ public abstract class Veiculo {
         this.tipo = tipo;
     }
 
-    public int gerarId(){
-        ultimoId++;
-        return ultimoId;
+    public Veiculo(int id, String placa, String modelo, int ano, boolean disponivel, String tipo) {
+        this.id = id;
+        this.placa = placa;
+        this.modelo = modelo;
+        this.ano = ano;
+        this.disponivel = disponivel;
+        this.tipo = tipo;
     }
+
+
     public int getId() {
         return id;
     }

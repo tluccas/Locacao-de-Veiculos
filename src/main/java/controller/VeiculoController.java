@@ -5,6 +5,7 @@ import model.Veiculo;
 import model.exceptions.JsonCarregamentoException;
 import model.exceptions.VeiculoNaoEncontradoException;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class VeiculoController {
@@ -28,29 +29,21 @@ public class VeiculoController {
     }
 
     // Método para buscar um veículo por placa
-    public Veiculo buscarPorPlaca(String placa) {
+    public Veiculo buscarPorPlaca(String placa) throws VeiculoNaoEncontradoException {
         if (placa == null || placa.trim().isEmpty()) {
             throw new IllegalArgumentException("Placa não pode ser nula ou vazia.");
         }
         return veiculoDAO.buscarPorPlaca(placa);
     }
 
-    // Método para remover um veículo por placa
-    public void removerVeiculo(String placa) throws VeiculoNaoEncontradoException {
-        if (placa == null || placa.trim().isEmpty()) {
-            throw new IllegalArgumentException("Placa não pode ser nula ou vazia.");
-        }
-        veiculoDAO.removerVeiculo(placa);
-    }
-    // Método p/ atualizar veiculo
-    public void atualizarVeiculo(Veiculo veiculo) throws VeiculoNaoEncontradoException {
+    public void atualizarVeiculo(Veiculo veiculo) throws VeiculoNaoEncontradoException, SQLException {
         if (veiculo == null) {
             throw new IllegalArgumentException("Veículo não pode ser nulo.");
         }
         veiculoDAO.atualizarVeiculo(veiculo);
     }
 
-    public void atualizarDisponibilidade(Veiculo veiculo, boolean disponivel) throws VeiculoNaoEncontradoException {
+    public void atualizarDisponibilidade(Veiculo veiculo, boolean disponivel) throws VeiculoNaoEncontradoException, SQLException {
         if (veiculo != null) {
             veiculo.setDisponivel(disponivel);
             veiculoDAO.atualizarVeiculo(veiculo);

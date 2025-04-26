@@ -7,6 +7,7 @@ import model.Cliente;
 import model.Locacao;
 import model.Veiculo;
 import model.exceptions.JsonCarregamentoException;
+import model.exceptions.VeiculoNaoEncontradoException;
 
 import javax.swing.*;
 import java.awt.*;
@@ -92,10 +93,14 @@ public class LocacaoView extends JFrame {
                     JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
                 }
 
-                if (veiculoController.buscarPorPlaca(placa) == null) {
-                    JOptionPane.showMessageDialog(null, "Veículo de placa" + placa + " não cadastrado!");
-                }else if(!veiculoController.buscarPorPlaca(placa).isDisponivel()){
-                    JOptionPane.showMessageDialog(null, "Veículo de placa" + placa + " está locado!");
+                try {
+                    if (veiculoController.buscarPorPlaca(placa) == null) {
+                        JOptionPane.showMessageDialog(null, "Veículo de placa" + placa + " não cadastrado!");
+                    }else if(!veiculoController.buscarPorPlaca(placa).isDisponivel()){
+                        JOptionPane.showMessageDialog(null, "Veículo de placa" + placa + " está locado!");
+                    }
+                } catch (VeiculoNaoEncontradoException ex) {
+                    throw new RuntimeException(ex);
                 }
 
                 if (clienteController.buscarCliente(cpf) == null) {
@@ -103,7 +108,12 @@ public class LocacaoView extends JFrame {
                 }
 
                 Cliente cliente = clienteController.buscarCliente(cpf);
-                Veiculo veiculo = veiculoController.buscarPorPlaca(placa);
+                Veiculo veiculo = null;
+                try {
+                    veiculo = veiculoController.buscarPorPlaca(placa);
+                } catch (VeiculoNaoEncontradoException ex) {
+                    throw new RuntimeException(ex);
+                }
                 LocalDate dataRetirada = retiradaDateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                 LocalDate dataDevolucao = devolucaoDateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 

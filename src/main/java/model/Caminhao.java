@@ -6,6 +6,9 @@ public class Caminhao extends Veiculo{
         super(placa, modelo, ano, tipo);
     }
 
+    public Caminhao(int id, String placa, String modelo, int ano, boolean veiculoDispinivel, String tipo){
+        super(id, placa, modelo, ano, veiculoDispinivel, tipo);
+    }
     @Override
     public double calcularCustoLocacao(int dias){
         return dias * 100;

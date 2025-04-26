@@ -98,10 +98,14 @@ public class PagamentoView extends JFrame {
                     JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
                 }
 
-                if (veiculoController.buscarPorPlaca(placa) == null) {
-                    JOptionPane.showMessageDialog(null, "Veículo de placa" + placa + " não encontrado!");
-                } else if (veiculoController.buscarPorPlaca(placa).isDisponivel()) {
-                    JOptionPane.showMessageDialog(null, "Veículo de placa" + placa + " não possui locação ativa!");
+                try {
+                    if (veiculoController.buscarPorPlaca(placa) == null) {
+                        JOptionPane.showMessageDialog(null, "Veículo de placa" + placa + " não encontrado!");
+                    } else if (veiculoController.buscarPorPlaca(placa).isDisponivel()) {
+                        JOptionPane.showMessageDialog(null, "Veículo de placa" + placa + " não possui locação ativa!");
+                    }
+                } catch (VeiculoNaoEncontradoException ex) {
+                    throw new RuntimeException(ex);
                 }
 
                 //Executar o processo de pagamento

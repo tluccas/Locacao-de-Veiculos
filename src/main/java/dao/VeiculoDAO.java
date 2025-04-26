@@ -1,76 +1,140 @@
 package dao;
 
-import model.Veiculo;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import model.exceptions.JsonCarregamentoException;
-import model.exceptions.VeiculoNaoEncontradoException;
-
-import java.io.*;
-import java.lang.reflect.Type;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import db.DatabaseConfig;
+import db.DBConnection;
+import model.*;
+import model.exceptions.VeiculoNaoEncontradoException;
+
 public class VeiculoDAO {
-    private static final String VEICULOS_FILE = "veiculos.json";
-    private List<Veiculo> veiculos;
 
-    public VeiculoDAO() throws JsonCarregamentoException {
-        Type tipoVeiculo = new TypeToken<List<Veiculo>>(){}.getType();
-        veiculos = Persistencia.carregarDados(VEICULOS_FILE, tipoVeiculo);
+    String DB_URL = DatabaseConfig.getURL();
+    String DB_USER = DatabaseConfig.getUser();
+    String DB_PASSWORD = DatabaseConfig.getPassword();
 
-        if (veiculos == null) {
-            veiculos = new ArrayList<>();
+    public VeiculoDAO() {
+    }
+
+    public void adicionarVeiculo(Veiculo veiculo) {
+        String sql = "INSERT INTO veiculos (placa, modelo, ano, disponivel, tipo) VALUES (?,?,?,?,?)";
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)){
+
+            stmt.setString(1, veiculo.getPlaca());
+            stmt.setString(2, veiculo.getModelo());
+            stmt.setInt(3,veiculo.getAno());
+            stmt.setBoolean(4, veiculo.isDisponivel());
+            stmt.setString(5, veiculo.getTipo());
+            int rowsAffected = stmt.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Veiculo adicionado com sucesso!");
+            }else{
+                System.out.println("Erro ao adicionar veiculo!");
+            }
+        }catch (SQLException e) {
+            System.err.println("Erro ao adicionar veiculo!" + e.getMessage());
+            e.printStackTrace();
         }
     }
 
-    //Método para salvar lista de veículos no arquivo veiculos.json
-    public void salvarVeiculos() {
-        Persistencia.salvarDados(VEICULOS_FILE, veiculos);
+    public Veiculo buscarPorPlaca(String placa) throws VeiculoNaoEncontradoException {
+        String sql = "SELECT * FROM veiculos WHERE placa = ?";
+
+        try(Connection conn = DBConnection.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)){
+
+            stmt.setString(1, placa);
+
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+                int id = rs.getInt("id");
+                placa = rs.getString("placa");
+                String modelo = rs.getString("modelo");
+                int ano = rs.getInt("ano");
+                boolean disponivel = rs.getBoolean("disponivel");
+                String tipo = rs.getString("tipo");
+
+                return criarVeiculo(id, placa, modelo, ano, disponivel, tipo);
+            }else{
+                throw new VeiculoNaoEncontradoException("Veiculo não encontrado ou inexistente");
+            }
+        }catch (SQLException e){
+            System.err.println("Erro ao buscar veiculo!" + e.getMessage());
+            e.printStackTrace();
+        }
+            return null;
     }
 
-    // Adicionar um novo veículo
-    public void adicionarVeiculo(Veiculo veiculo) {
-        veiculos.add(veiculo);
-        salvarVeiculos();
-    }
-
-    // Listar todos os veículos
     public List<Veiculo> listarVeiculos() {
+        List<Veiculo> veiculos = new ArrayList<>();
+        String sql = "SELECT * FROM veiculos";
+
+        try (Connection conn = DBConnection.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String placa = rs.getString("placa");
+                String modelo = rs.getString("modelo");
+                int ano = rs.getInt("ano");
+                boolean disponivel = rs.getBoolean("disponivel");
+                String tipo = rs.getString("tipo");
+
+                veiculos.add(criarVeiculo(id, placa, modelo, ano, disponivel, tipo));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         return veiculos;
     }
 
-    // Buscar veículo por placa
-    public Veiculo buscarPorPlaca(String placa) {
-        for (Veiculo v : veiculos) {
-            if (v.getPlaca().equalsIgnoreCase(placa)) {
-                return v;
+    public void atualizarVeiculo(Veiculo veiculoAtualizado) throws VeiculoNaoEncontradoException, SQLException {
+        String sql = "UPDATE veiculos SET modelo = ?, ano = ?, disponivel = ?, tipo = ? WHERE placa = ?";
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            // Verifica se o veículo existe
+            if (buscarPorPlaca(veiculoAtualizado.getPlaca()) == null) {
+                throw new VeiculoNaoEncontradoException("Veículo com placa " + veiculoAtualizado.getPlaca() + " não encontrado.");
+            }
+
+            // Preenche os parâmetros da query
+            stmt.setString(1, veiculoAtualizado.getModelo());
+            stmt.setInt(2, veiculoAtualizado.getAno());
+            stmt.setBoolean(3, veiculoAtualizado.isDisponivel());
+            stmt.setString(4, veiculoAtualizado.getTipo());
+            stmt.setString(5, veiculoAtualizado.getPlaca());
+
+            // Executa a atualização
+            int linhasAfetadas = stmt.executeUpdate();
+
+            if (linhasAfetadas == 0) {
+                throw new VeiculoNaoEncontradoException("Nenhum veículo foi atualizado.");
             }
         }
-        return null;
     }
 
-    // Remover veículo por placa
-    public void removerVeiculo(String placa) throws VeiculoNaoEncontradoException {
-        Veiculo veiculo = buscarPorPlaca(placa);
-        if (veiculo == null) {
-            throw new VeiculoNaoEncontradoException("Veiculo com placa " + placa + " não encontrado");
+
+    public Veiculo criarVeiculo(int id, String placa, String modelo, int ano, boolean disponivel, String tipo) {
+        boolean veiculoDisponivel = (id == 0) ? true : disponivel;
+        switch (tipo){
+            case "Carro":
+                return new Carro(id, placa, modelo, ano, veiculoDisponivel, tipo);
+
+            case "Moto":
+                return new Moto(id, placa, modelo, ano, veiculoDisponivel, tipo);
+            case "Caminhão":
+                return new Caminhao(id, placa, modelo, ano, veiculoDisponivel, tipo);
+            default:
+                throw new IllegalStateException("Tipo de veículo inválido: " + tipo);
         }
-        veiculos.remove(veiculo);
-        salvarVeiculos();
-    }
-
-    public void atualizarVeiculo(Veiculo veiculoAtualizado) throws VeiculoNaoEncontradoException {
-        Veiculo veiculoExistente = buscarPorPlaca(veiculoAtualizado.getPlaca());
-        if (veiculoExistente == null) {
-            throw new VeiculoNaoEncontradoException("Veículo com placa " + veiculoAtualizado.getPlaca() + " não encontrado.");
-        }
-
-        // Atualiza os dados do veículo existente
-        veiculoExistente.setModelo(veiculoAtualizado.getModelo());
-        veiculoExistente.setAno(veiculoAtualizado.getAno());
-        veiculoExistente.setDisponivel(veiculoAtualizado.isDisponivel());
-
-        salvarVeiculos(); // Salva a lista atualizada no arquivo JSON
     }
 }

@@ -21,4 +21,4 @@ SQL.txt
 src/main/java/dao/SQL.txt
 *.json
 /MySQL
-BD.env
+.env
