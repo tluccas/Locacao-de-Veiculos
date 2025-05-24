@@ -1,62 +1,63 @@
-LOCAÇÃO DE VEÍCULOS
+# 🚗 Locadora de Veículos
 
-Este é um projeto desenvolvido para a disciplina de Programação Orientada a Objetos (POO). O sistema simula uma locadora de veículos, permitindo o gerenciamento de veículos, clientes, aluguéis e pagamentos.
+Este é um projeto desenvolvido para a disciplina de **Programação Orientada a Objetos (POO)**. O sistema simula uma locadora de veículos, permitindo o gerenciamento completo de **veículos, clientes, aluguéis e pagamentos**, aplicando conceitos sólidos de **POO** e boas práticas de desenvolvimento de software.
 
----- Funcionalidades:
+---
 
-O sistema oferece as seguintes funcionalidades:
+## ✨ Funcionalidades
 
----- Cadastro de Veículos:
+- 🔹 **Cadastro de Veículos**
+  - Adicionar e listar veículos.
+  - Informações: **placa, marca, modelo e ano**.
 
-Adicionar e listar veículos.
+- 🔹 **Cadastro de Clientes**
+  - Registro de novos clientes.
+  - Informações: **nome, CPF e e-mail**.
 
-Cada veículo possui informações como placa, marca, modelo e ano
+- 🔹 **Aluguel de Veículos**
+  - Registrar aluguéis vinculando um veículo a um cliente.
+  - Cálculo automático do valor total com base no **número de dias**.
 
----- Cadastro de Clientes:
+- 🔹 **Pagamentos**
+  - Registro de pagamentos vinculados aos aluguéis.
+  - Cálculo do **faturamento mensal** da locadora.
 
-Cadastro de novos clientes.
+- 🔹 **Relatórios**
+  - Listar **veículos disponíveis**.
+  - Listar **aluguéis ativos**.
+  - Gerar **relatórios de faturamento mensal**.
 
-Cada cliente possui informações como nome, CPF e E-mail.
+---
 
----- Aluguel de Veículos:
+## 🛠️ Tecnologias e Conceitos Aplicados
 
-Registrar aluguéis, vinculando um veículo a um cliente.
+- **Linguagem:** Java
 
-Calcular o valor total do aluguel com base no número de dias.
+- **Persistência de Dados:** JSON (via biblioteca **Gson**) e MySQL (versão alternativa)
 
----- Pagamentos:
+- **Paradigma:** Programação Orientada a Objetos (POO)
 
-Registrar pagamentos associados a um aluguel.
+### 🔥 Recursos Técnicos
 
-Calcular o faturamento mensal da locadora de forma automática.
+- ✅ **Princípios de POO:**  
+  - Encapsulamento  
+  - Herança  
+  - Polimorfismo  
+  - Abstração  
 
----- Relatórios:
+- ✅ **Tratamento de Exceções**
 
-Listar veículos disponíveis.
+- ✅ **Coleções Java:**  
+  - Uso de `List` e outras estruturas de dados
 
-Listar aluguéis ativos.
+- ✅ **Padrões de Projeto Aplicados**
 
-Exibir faturamento mensal.
+- ✅ **Modelagem baseada em regras de negócio reais**
 
-Tecnologias Utilizadas
+---
 
----- Linguagem: Java
+## 🎯 Sobre o Projeto
 
----- Paradigma: Programação Orientada a Objetos (POO)
+Este projeto reforçou minha capacidade de **modelar sistemas reais**, **integrar dados de forma eficiente** e **aplicar na prática os princípios da Programação Orientada a Objetos**, sempre seguindo as boas práticas de design e desenvolvimento de software.
 
----- Bibliotecas usadas: Gson (para persistência de dados)
-
----- Conceitos aplicados:
-
-Classes e objetos
-
-Herança e polimorfismo
-
-Encapsulamento
-
-Coleções (Listas, Mapas, etc.)
-
-Tratamento de exceções
-
-Persistência de dados utilizando JSON
-
+---
